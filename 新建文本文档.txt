@@ -1,0 +1,9 @@
+ettercap -G
+sniff ettercap input 
+hosts 
+scan for hosts
+
+host list
+mitm
+sniff remove
+start sniffing

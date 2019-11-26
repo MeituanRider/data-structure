@@ -1,0 +1,59 @@
+**************  示例代码一  **********************************
+class Demo{  
+     int a;  
+     public Demo(int a){  
+         this.a=a;  
+     }  
+ }  
+ public class TestQuote{  
+     public static void main(String args[]){  
+         Demo d1=new Demo(1);  
+         Demo d2=new Demo(2);  
+         System.out.println(d1.a);  
+         System.out.println(d2.a);  
+         function(d1,d2);  
+         System.out.println(d1.a);  
+         System.out.println(d2.a);  
+     }  
+     private static void function(Demo d1,Demo d2){  //这里的d1、d2与主函数中d1、d2是不同的两个引用变量，通过引用传递把主函数中两个实体的成员变量值改变了
+         int a;  
+         a=d1.a;  
+         d1.a=d2.a;  
+         d2.a=a;  
+     }  
+ }  
+代码运行后结果为：
+1   2
+2   1
+
+
+**************  示例代码二  **********************************
+class Demo{  
+     int a;  
+     public Demo(int a){  
+         this.a=a;  
+     }  
+ }  
+ public class TestQuote{  
+     public static void main(String args[]){  
+         Demo d1=new Demo(1);  
+         Demo d2=new Demo(2);  
+         System.out.println(d1.a);  
+         System.out.println(d2.a);  
+         function(d1,d2);  
+         System.out.println(d1.a);  
+         System.out.println(d2.a);  
+     }  
+     private static void function(Demo d1,Demo d2){
+   //这里的d1、d2与主函数中d1、d2是不同的两个引用变量，通过引用传递只是把子函数中两个引用变量的指向对调了，
+    //主函数中两实体对象的成员变量值没变，调用结束后子函数中两个引用变量释放，但主函数中两个引用变量及指向还是开始的状态。
+         Demo temp;  
+         temp=d1;  
+         d1=d2;  
+         d2=temp;  
+     }  
+ }  
+
+代码运行后结果为：
+1   2
+1   2 
